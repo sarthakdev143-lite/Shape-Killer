@@ -67,6 +67,7 @@ const User = () => {
                     left: `${position.left}%`,
                 }}
             ></div>
+            <p>Control With W, A, S, D...</p>
         </div>
     );
 };

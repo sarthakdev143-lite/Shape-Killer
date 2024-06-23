@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import './User.css';
 
 const User = () => {
@@ -8,6 +9,7 @@ const User = () => {
 
     const animationRef = useRef();
     const lastTimestampRef = useRef(performance.now());
+    const userRef = useRef();
 
     const handleKeyDown = (event) => {
         setKeysPressed(prevState => ({ ...prevState, [event.key]: true }));
@@ -35,20 +37,29 @@ const User = () => {
             animationRef.current = requestAnimationFrame(move);
 
             let { top, left } = position;
+            const userSize = 3; // User size in rem
+            const boardHeight = 113; // Board height in percentage
+            const boardWidth = 116; // Board width in percentage
 
             // Calculate movement based on keys pressed
-            if (keysPressed['w']) {
+            if (keysPressed['w'] || keysPressed['ArrowUp']) {
                 top -= speed * dt;
             }
-            if (keysPressed['a']) {
+            if (keysPressed['a'] || keysPressed['ArrowLeft']) {
                 left -= speed * dt;
             }
-            if (keysPressed['s']) {
+            if (keysPressed['s'] || keysPressed['ArrowDown']) {
                 top += speed * dt;
             }
-            if (keysPressed['d']) {
+            if (keysPressed['d'] || keysPressed['ArrowRight']) {
                 left += speed * dt;
             }
+
+            // Ensure the .user element stays within the .board boundaries
+            if (top < 0) top = 0;
+            if (top > boardHeight - (userSize / 16 * 100)) top = boardHeight - (userSize / 16 * 100); // userSize in percentage
+            if (left < 0) left = 0;
+            if (left > boardWidth - (userSize / 16 * 100)) left = boardWidth - (userSize / 16 * 100); // userSize in percentage
 
             setPosition({ top, left });
         };
@@ -58,17 +69,32 @@ const User = () => {
         return () => cancelAnimationFrame(animationRef.current);
     }, [keysPressed, position, speed]);
 
+    useEffect(() => {
+        if (userRef.current) {
+            gsap.to(userRef.current, {
+                top: `${position.top}%`,
+                left: `${position.left}%`,
+                duration: 1.5,
+                ease: "back.out(4)",
+            });
+        }
+    }, [position]);
+
     return (
-        <div className="board">
+        <>
             <div
+                ref={userRef}
                 className="user"
-                style={{
-                    top: `${position.top}%`,
-                    left: `${position.left}%`,
-                }}
             ></div>
-            <p>Control With W, A, S, D...</p>
-        </div>
+            <p id='move-with'>
+                <span>Move With :</span>
+                <p>
+                    <span className='highlight'>W, A, S, D</span> or <span className='highlight'>
+                        <i className="ri-arrow-up-line"></i>, <i className="ri-arrow-left-line"></i>, <i className="ri-arrow-down-line"></i>, <i className="ri-arrow-right-line"></i>
+                    </span>
+                </p>
+            </p>
+        </>
     );
 };
 

@@ -1,28 +1,27 @@
-.board {
-    width: 100%;
-    height: calc(90vh);
-    overflow: hidden;
-    position: relative;
-    background: #000;
-    border-radius: 0.5rem;
-
-    p {
-        color: #ffffff80;
-        position: absolute;
-        bottom: 1rem;
-        left: 1rem;
-    }
+.user {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    border: 0.40rem solid transparent;
+    outline: 0.35rem solid #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50%, 50%);
+    box-shadow: 0 0 8rem 4rem rgba(255, 255, 255, 0.2);
+    transition: transform 0.1s ease;
 }
 
-.user {
-    width: 1.4vw;
-    height: 1.4vw;
-    border-radius: 50%;
-    border: 0.40vw solid transparent;
-    outline: 0.35vw solid #fff;
+#move-with {
+    mix-blend-mode: difference;
+    color: #ffffff80;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 8dvw 4dvw rgba(255, 255, 255, 0.2); /* Adjusted box-shadow */
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 1rem;
+
+    .highlight {
+        color: #fff;
+    }
 }

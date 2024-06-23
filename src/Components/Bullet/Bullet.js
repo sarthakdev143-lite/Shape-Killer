@@ -36,6 +36,7 @@ const Bullet = React.forwardRef((props, ref) => {
         ease: "none",
         duration: 0.5,
         onComplete: () => {
+
           setBulletVisible(false);
         }
       });

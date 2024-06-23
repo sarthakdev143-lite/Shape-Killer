@@ -7,6 +7,7 @@ const User = () => {
     const [position, setPosition] = useState({ top: 50, left: 50 });
     const [keysPressed, setKeysPressed] = useState({});
     const [speed, setSpeed] = useState(35); // Initial speed (adjust as needed)
+    const [lastBulletTime, setLastBulletTime] = useState(0); // State to track the last bullet fired time
 
     const animationRef = useRef();
     const lastTimestampRef = useRef(performance.now());
@@ -14,6 +15,15 @@ const User = () => {
     const bulletRef = useRef(null);
 
     const spawnBullet = (clickEvent) => {
+        const currentTime = performance.now();
+
+        // Check if 0.2 seconds have passed since the last bullet was fired
+        if (currentTime - lastBulletTime < 200) {
+            return;
+        }
+
+        setLastBulletTime(currentTime);
+
         const boardRect = clickEvent.currentTarget.getBoundingClientRect();
         const targetX = (clickEvent.clientX - boardRect.left) / boardRect.width * 100;
         const targetY = (clickEvent.clientY - boardRect.top) / boardRect.height * 100;
@@ -116,4 +126,3 @@ const User = () => {
 };
 
 export default User;
-

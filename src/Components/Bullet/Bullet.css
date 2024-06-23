@@ -1,0 +1,8 @@
+.bullet {
+    position: absolute;
+    z-index: 100;
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: #fff; 
+    border-radius: 50%;
+}

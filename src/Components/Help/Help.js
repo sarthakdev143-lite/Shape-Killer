@@ -6,7 +6,7 @@ const Help = () => {
         <>
             <i class="ri-question-fill"></i>
             <section>
-                <h1><span>Guide</span></h1>
+                <h1><span>Guide</span></h1> 
             </section>
         </>
     )

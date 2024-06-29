@@ -7,7 +7,7 @@ const User = () => {
     const [position, setPosition] = useState({ top: 50, left: 50 });
     const [keysPressed, setKeysPressed] = useState({});
     const [speed, setSpeed] = useState(35); // Initial speed (adjust as needed)
-    const [lastBulletTime, setLastBulletTime] = useState(500); // State to track the last bullet fired time
+    const [lastBulletTime, setLastBulletTime] = useState(400); // State to track the last bullet fired time
 
     const animationRef = useRef();
     const lastTimestampRef = useRef(performance.now());
@@ -18,7 +18,7 @@ const User = () => {
         const currentTime = performance.now();
 
         // Check if 0.2 seconds have passed since the last bullet was fired
-        if (currentTime - lastBulletTime < 500) {
+        if (currentTime - lastBulletTime < 400) {
             console.log('Not enough time passed since last bullet fired');
             return;
         } else {

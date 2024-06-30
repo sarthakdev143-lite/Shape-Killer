@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Shape-Killer/static/css/main.11df549d.css",
-    "main.js": "/Shape-Killer/static/js/main.c5901179.js",
+    "main.css": "/Shape-Killer/static/css/main.b7a261dc.css",
+    "main.js": "/Shape-Killer/static/js/main.b80865ec.js",
     "static/js/453.64c62515.chunk.js": "/Shape-Killer/static/js/453.64c62515.chunk.js",
     "static/media/remixicon.svg?t=1718271040674": "/Shape-Killer/static/media/remixicon.f38690bdde29bddbc211.svg",
     "static/media/remixicon.eot?t=1718271040674": "/Shape-Killer/static/media/remixicon.d87042cf9a3f67d1cab2.eot",
@@ -9,12 +9,12 @@
     "static/media/remixicon.woff?t=1718271040674": "/Shape-Killer/static/media/remixicon.1bdc36c90398c9d667d1.woff",
     "static/media/remixicon.woff2?t=1718271040674": "/Shape-Killer/static/media/remixicon.8aece9ab0de67b79cfda.woff2",
     "index.html": "/Shape-Killer/index.html",
-    "main.11df549d.css.map": "/Shape-Killer/static/css/main.11df549d.css.map",
-    "main.c5901179.js.map": "/Shape-Killer/static/js/main.c5901179.js.map",
+    "main.b7a261dc.css.map": "/Shape-Killer/static/css/main.b7a261dc.css.map",
+    "main.b80865ec.js.map": "/Shape-Killer/static/js/main.b80865ec.js.map",
     "453.64c62515.chunk.js.map": "/Shape-Killer/static/js/453.64c62515.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.11df549d.css",
-    "static/js/main.c5901179.js"
+    "static/css/main.b7a261dc.css",
+    "static/js/main.b80865ec.js"
   ]
 }

@@ -11,6 +11,10 @@
     align-items: center;
     padding-top: 10rem;
     gap: 1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #heading {
@@ -20,10 +24,6 @@
     background-clip: text;
     color: transparent;
     animation: gradientAnimation 5s linear infinite;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 #start {

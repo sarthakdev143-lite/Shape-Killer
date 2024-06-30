@@ -6,6 +6,7 @@ import MainMenu from '../MainMenu/MainMenu'
 import Help from '../Help/Help';
 
 const User = () => {
+    const [fullScreen, setfullScreen] = useState(false)
     const [position, setPosition] = useState({ top: 50, left: 50 });
     const [keysPressed, setKeysPressed] = useState({});
     const [speed, setSpeed] = useState(35); // Initial speed 
@@ -47,11 +48,41 @@ const User = () => {
     };
 
     const startGame = () => {
-        // Doing Full Screen
         if (fullScreenRef.current) {
             fullScreenRef.current.requestFullscreen();
         }
     }
+
+    const checkFullscreen = () => {
+        if (document.fullscreenElement ||
+            document.mozFullScreenElement ||
+            document.webkitFullscreenElement ||
+            document.msFullscreenElement) {
+            setfullScreen(true);
+        } else {
+            setfullScreen(false);
+        }
+    };
+
+    useEffect(() => {
+        // Check fullscreen status on mount
+        checkFullscreen();
+
+        // Add event listeners to check fullscreen status on change
+        document.addEventListener('fullscreenchange', checkFullscreen);
+        document.addEventListener('mozfullscreenchange', checkFullscreen);
+        document.addEventListener('webkitfullscreenchange', checkFullscreen);
+        document.addEventListener('msfullscreenchange', checkFullscreen);
+
+        // Cleanup event listeners on unmount
+        return () => {
+            document.removeEventListener('fullscreenchange', checkFullscreen);
+            document.removeEventListener('mozfullscreenchange', checkFullscreen);
+            document.removeEventListener('webkitfullscreenchange', checkFullscreen);
+            document.removeEventListener('msfullscreenchange', checkFullscreen);
+        };
+    }, []);
+
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
@@ -123,23 +154,26 @@ const User = () => {
                 >
                 </div>
                 <Bullet ref={bulletRef} />
-                <div id='move-with'>
-                    <p>
-                        <span>Shoot With :</span>
-                        <span class="icon material-symbols-outlined">
-                            left_click
-                        </span>
-                    </p>
-                    <p>
-                        Move With :
-                        <p className='highlight'>W, A, S, D</p>
-                        or
-                        <p className='highlight'>
-                            <span><i className="ri-arrow-up-line"></i>, <i className="ri-arrow-left-line"></i>, <i className="ri-arrow-down-line"></i>, <i className="ri-arrow-right-line"></i></span>
-                        </p>
-                    </p>
-                </div>
-                {/* <Help/> */}
+                {fullScreen &&
+                    <>
+                        <div id='move-with'>
+                            <p>
+                                <span>Shoot With :</span>
+                                <span class="icon material-symbols-outlined">
+                                    left_click
+                                </span>
+                            </p>
+                            <p>
+                                Move With :
+                                <p className='highlight'>W, A, S, D</p>
+                                or
+                                <p className='highlight'>
+                                    <span><i className="ri-arrow-up-line"></i>, <i className="ri-arrow-left-line"></i>, <i className="ri-arrow-down-line"></i>, <i className="ri-arrow-right-line"></i></span>
+                                </p>
+                            </p>
+                        </div>
+                        <Help />
+                    </>}
             </div>
             <MainMenu startGame={startGame} />
         </>

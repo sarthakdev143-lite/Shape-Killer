@@ -1,6 +1,6 @@
 .bullet {
     position: absolute;
-    z-index: 100;
+    z-index: 0;
     width: 0.8rem;
     height: 0.8rem;
     background-color: #fff; 

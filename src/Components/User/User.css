@@ -11,6 +11,10 @@
 }
 
 #move-with {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     mix-blend-mode: difference;
     color: #ffffff80;
     position: absolute;

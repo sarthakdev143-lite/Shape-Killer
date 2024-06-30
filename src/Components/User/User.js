@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './User.css';
+import Help from '../Help/Help';
 import Bullet from '../Bullet/Bullet';
 
 const User = () => {
@@ -114,13 +115,14 @@ const User = () => {
                 </div>
                 <Bullet ref={bulletRef} />
                 <p id='move-with'>
-                    <span>Move With :</span>
-                    <p>
-                        <span className='highlight'>W, A, S, D</span> or <span className='highlight'>
-                            <i className="ri-arrow-up-line"></i>, <i className="ri-arrow-left-line"></i>, <i className="ri-arrow-down-line"></i>, <i className="ri-arrow-right-line"></i>
-                        </span>
+                    Move With :
+                    <p className='highlight'>W, A, S, D</p>
+                    or
+                    <p className='highlight'>
+                        <i className="ri-arrow-up-line"></i>, <i className="ri-arrow-left-line"></i>, <i className="ri-arrow-down-line"></i>, <i className="ri-arrow-right-line"></i>
                     </p>
                 </p>
+                <Help />
             </div>
         </>
     );

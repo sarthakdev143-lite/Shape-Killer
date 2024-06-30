@@ -107,7 +107,7 @@ const User = () => {
 
     return (
         <>
-            <div className="board" onClick={spawnBullet}>
+            <div className="area" onClick={spawnBullet}>
                 <div
                     ref={userRef}
                     className="user"

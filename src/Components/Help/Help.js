@@ -14,7 +14,7 @@ const Help = () => {
                 <i id='help-icon' className="ri-question-fill" onClick={toggleHelp}></i>
                 <div id='help-menu' className={isHelpVisible ? 'visible' : 'hidden'}>
                     <i id='close' className="ri-close-circle-line" onClick={toggleHelp}></i>
-                    <h1 id='heading'>Welcome to Shape Killer!</h1>
+                    <h1 id='heading'>- Help -</h1>
                     <div id='help-menu-content'>
                         <p>In this game, you are tasked with eliminating shapes that appear on the screen.</p>
 

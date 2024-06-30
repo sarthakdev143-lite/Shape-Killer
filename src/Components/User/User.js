@@ -1,19 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './User.css';
-import Help from '../Help/Help';
 import Bullet from '../Bullet/Bullet';
+import MainMenu from '../MainMenu/MainMenu'
+import Help from '../Help/Help';
 
 const User = () => {
     const [position, setPosition] = useState({ top: 50, left: 50 });
     const [keysPressed, setKeysPressed] = useState({});
-    const [speed, setSpeed] = useState(35); // Initial speed (adjust as needed)
+    const [speed, setSpeed] = useState(35); // Initial speed 
     const [lastBulletTime, setLastBulletTime] = useState(400); // State to track the last bullet fired time
 
     const animationRef = useRef();
     const lastTimestampRef = useRef(performance.now());
     const userRef = useRef();
     const bulletRef = useRef(null);
+    const fullScreenRef = useRef();
 
     const spawnBullet = (clickEvent) => {
         const currentTime = performance.now();
@@ -43,6 +45,13 @@ const User = () => {
     const handleKeyUp = (event) => {
         setKeysPressed(prevState => ({ ...prevState, [event.key]: false }));
     };
+
+    const startGame = () => {
+        // Doing Full Screen
+        if (fullScreenRef.current) {
+            fullScreenRef.current.requestFullscreen();
+        }
+    }
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
@@ -107,23 +116,32 @@ const User = () => {
 
     return (
         <>
-            <div className="area" onClick={spawnBullet}>
+            <div ref={fullScreenRef} className="area" onClick={spawnBullet}>
                 <div
                     ref={userRef}
                     className="user"
                 >
                 </div>
                 <Bullet ref={bulletRef} />
-                <p id='move-with'>
-                    Move With :
-                    <p className='highlight'>W, A, S, D</p>
-                    or
-                    <p className='highlight'>
-                        <i className="ri-arrow-up-line"></i>, <i className="ri-arrow-left-line"></i>, <i className="ri-arrow-down-line"></i>, <i className="ri-arrow-right-line"></i>
+                <div id='move-with'>
+                    <p>
+                        <span>Shoot With :</span>
+                        <span class="icon material-symbols-outlined">
+                            left_click
+                        </span>
                     </p>
-                </p>
-                <Help />
+                    <p>
+                        Move With :
+                        <p className='highlight'>W, A, S, D</p>
+                        or
+                        <p className='highlight'>
+                            <span><i className="ri-arrow-up-line"></i>, <i className="ri-arrow-left-line"></i>, <i className="ri-arrow-down-line"></i>, <i className="ri-arrow-right-line"></i></span>
+                        </p>
+                    </p>
+                </div>
+                {/* <Help/> */}
             </div>
+            <MainMenu startGame={startGame} />
         </>
     );
 };
